@@ -1,26 +1,28 @@
 class Solution {
-public List<List<Integer>> threeSum(int[] nums) {
+    public static List<List<Integer>> threeSum(int[] nums) {
         Set<List<Integer>> res=new HashSet<>();
         Arrays.sort(nums);
-        for(int i=0;i<nums.length-2;i++) {
-            if (i>0 && nums[i] == nums[i - 1]) {
-				continue;
-			}
-            int low=i+1;
-            int high=nums.length-1;
-            while(low<high) {
-                if(nums[low]+nums[high]==-nums[i]) {
-                    res.add(Arrays.asList(nums[low],nums[high],nums[i]));
-                    low++;
-                    high--;
-                } else if(nums[low]+nums[high]>-nums[i]) {
-                    high--;
-                } else {
-                    low++;
+        for(int i=0; i<nums.length-2;i++)
+        {
+            int l =i+1 , r=nums.length-1;
+            while(l<r)
+            {
+                if(nums[l]+nums[r]==-nums[i])
+                {
+                    res.add(Arrays.asList(nums[l],nums[r],nums[i]));
+                    l++;
+                    r--;
+                }
+                else if(nums[r]+nums[l]>-nums[i])
+                    r--;
+                else
+                {
+                    l++;
                 }
             }
         }
         return new ArrayList<>(res);
+
     }
 
 }
