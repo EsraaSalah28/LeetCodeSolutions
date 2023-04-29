@@ -42,19 +42,13 @@ class Solution {
       
       return prev;
     }
-void merge(ListNode l1, ListNode l2) {
-      while (l1 != null) {
-        ListNode n1 = l1.next, n2 = l2.next;
-        l1.next = l2;
-        
-        if (n1 == null)
-          break;
-            
-        l2.next = n1;
-        l1 = n1;
-        l2 = n2;
-      }
-    }
-
+ void merge(ListNode head1, ListNode head2) {
+        while (head2 != null) {
+            ListNode next = head1.next;
+            head1.next = head2;
+            head1 = head2;
+            head2 = next;
+        }
+ }
     
 }
