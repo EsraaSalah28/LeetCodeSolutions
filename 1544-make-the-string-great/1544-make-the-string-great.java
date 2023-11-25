@@ -1,7 +1,7 @@
 import static java.lang.Character.*;
 
 class Solution {
-    public static String makeGood(String s) {
+        public static String makeGood(String s) {
         Stack<Character> stack = new Stack<>();
         for (int i = 0; i < s.length(); i++) {
             Character ch = s.charAt(i);
@@ -27,5 +27,5 @@ class Solution {
         return stack.stream().map(String::valueOf).collect(Collectors.joining(""));
     }
 
-
 }
+
