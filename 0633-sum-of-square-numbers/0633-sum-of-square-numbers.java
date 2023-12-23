@@ -13,7 +13,7 @@ class Solution {
         long h= (int) (Math.sqrt(c)) ;
         
         while(l<=h){ 
-            long curr=h*h+l*l; 
+            long curr=(long)(Math.pow(l,2) + Math.pow(h,2)); 
             if(curr==c) return true;
             if(curr>c ) h--;
             else l++;
