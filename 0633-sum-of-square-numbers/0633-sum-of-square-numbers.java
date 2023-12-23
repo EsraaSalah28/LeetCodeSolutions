@@ -9,14 +9,14 @@ class Solution {
     //           return true;
     //   }
     // return false;
-       long i=0;
-        long j= (int) (Math.sqrt(c)) ;
+       long l=0;
+        long h= (int) (Math.sqrt(c)) ;
         
-        while(i<=j){ 
-            long e=j*j+(i*i); 
-            if(e==c) return true;
-            if(e>c ) j--;
-            else i++;
+        while(l<=h){ 
+            long curr=h*h+l*l; 
+            if(curr==c) return true;
+            if(curr>c ) h--;
+            else l++;
         }
         return false;
     }     
