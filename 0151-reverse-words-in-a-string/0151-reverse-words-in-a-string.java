@@ -1,14 +1,35 @@
 class Solution {
     public String reverseWords(String s) {
-    String reversed = new StringBuilder(s).reverse().toString();
-    String[] words = reversed.split(" ");
-    StringBuilder res = new StringBuilder();
-    for (String word : words) {
-        if (word.length() > 0) {
-            res.append(new StringBuilder(word).reverse().toString()).append(" ");
+     String s2= cleanSpaces(s);
+     StringBuilder builder = new StringBuilder (s2);
+     
+       revWord(builder,0,builder.length()-1); 
+        int start=0; int end =0; int n = builder.length();
+        while(start <n)
+        {
+            while(end<n && builder.charAt(end)!=' ')
+                ++end;
+             revWord(builder,start,end-1);
+            start=end+1;
+            ++end;
         }
-    }
-    return res.toString().trim();
+  return builder.toString();  
         
-    }
+}
+ 
+void revWord(StringBuilder sb, int start, int end){
+    while(start<end){
+    char temp = sb.charAt(start);
+    sb.setCharAt(start++, sb.charAt(end));
+    sb.setCharAt(end--,temp);
+}
+}
+
+
+
+ String cleanSpaces(String str)
+ {
+     return str.replaceAll("\\s+"," ").trim();
+ }
+
 }
