@@ -25,7 +25,7 @@ class Solution {
         {
             if(neigbour!=parentNode){
                 sum+=dfs(neigbour,currentNode,adj,values,k,componentCount);
-              sum %= k;
+         
             }
         }
         sum+=values[currentNode];
