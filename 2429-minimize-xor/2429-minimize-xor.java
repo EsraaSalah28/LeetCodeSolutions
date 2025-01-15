@@ -1,28 +1,26 @@
 class Solution {
   public int minimizeXor(int num1, int num2) {
     int targetBits = countSetBits(num2);
-    // Use a helper array to store minXOR and result
-    int[] helper = {Integer.MAX_VALUE, 0}; // helper[0] = minXOR, helper[1] = result
+    int result = 0;
 
-    // Generate all x with exactly targetBits set bits
-    generateX(0, 0, targetBits, num1, helper);
-
-    return helper[1];
-}
-
-private void generateX(int current, int start, int remainingBits, int num1, int[] helper) {
-    if (remainingBits == 0) {
-        int currentXOR = current ^ num1;
-        if (currentXOR < helper[0]) {
-            helper[0] = currentXOR; // Update minXOR
-            helper[1] = current;   // Update result
+    // Step 1: Use the most significant bits of num1
+    for (int i = 31; i >= 0; i--) {
+        if ((num1 & (1 << i)) != 0) { // If the ith bit in num1 is set
+            result |= (1 << i);       // Set the ith bit in result
+            targetBits--;            // Decrease the required set bits
+            if (targetBits == 0) break; // Stop if no more bits are needed
         }
-        return;
     }
 
-    for (int i = start; i < 30; i++) {
-        generateX(current | (1 << i), i + 1, remainingBits - 1, num1, helper);
+    // Step 2: Use the least significant unset bits if more bits are needed
+    for (int i = 0; i <= 31 && targetBits > 0; i++) {
+        if ((result & (1 << i)) == 0) { // If the ith bit in result is not set
+            result |= (1 << i);         // Set the ith bit in result
+            targetBits--;              // Decrease the required set bits
+        }
     }
+
+    return result;
 }
 
 // Helper method to count set bits
@@ -34,5 +32,6 @@ private int countSetBits(int num) {
     }
     return count;
 }
+
 
 }
