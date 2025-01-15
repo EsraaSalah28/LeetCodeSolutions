@@ -12,25 +12,26 @@ class Solution {
         }
     }
 
-    // Step 2: Use the least significant unset bits if more bits are needed
-    for (int i = 0; i <= 31 && targetBits > 0; i++) {
-        if ((result & (1 << i)) == 0) { // If the ith bit in result is not set
-            result |= (1 << i);         // Set the ith bit in result
-            targetBits--;              // Decrease the required set bits
-        }
-    }
+    // // Step 2: Use the least significant unset bits if more bits are needed
+    // for (int i = 0; i <= 31 && targetBits > 0; i++) {
+    //     if ((result & (1 << i)) == 0) { // If the ith bit in result is not set
+    //         result |= (1 << i);         // Set the ith bit in result
+    //         targetBits--;              // Decrease the required set bits
+    //     }
+    // }
 
     return result;
 }
 
 // Helper method to count set bits
 private int countSetBits(int num) {
-    int count = 0;
-    while (num > 0) {
-        count += num & 1;
-        num >>= 1;
-    }
-    return count;
+ int count =0;
+ while(num>0)
+ {
+    count+=num&1;
+    num>>=1;
+ }
+ return count;
 }
 
 
